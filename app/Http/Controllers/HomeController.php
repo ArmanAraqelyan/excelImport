@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 // Models
 use App\Events\FileUploaded;
+use App\Imports\ExcelInfoImportCollection;
+use App\Imports\ImportExcels;
 use App\Models\Uploads;
 
 // Requests
 use App\Http\Requests\ExcelUploadRequest;
 
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller

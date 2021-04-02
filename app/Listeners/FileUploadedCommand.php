@@ -3,10 +3,10 @@
 namespace App\Listeners;
 
 use App\Events\FileUploaded;
-use App\Jobs\InsertToTable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Support\Facades\Artisan;
+use App\Imports\ImportExcels;
+
+use App\Models\Uploads;
+use Maatwebsite\Excel\Facades\Excel as ExcelFacade;
 
 
 class FileUploadedCommand
@@ -29,6 +29,9 @@ class FileUploadedCommand
      */
     public function handle(FileUploaded $event)
     {
-        InsertToTable::dispatch()->delay(now()->addSeconds(10));
+        $importer = new ImportExcels;
+        $importer->setProperties('file_id' , $event->file_id);
+        ExcelFacade::queueImport($importer,$event->file_name , 'excel');
+//        InsertToTable::dispatch()->delay(now()->addSeconds(10));
     }
 }

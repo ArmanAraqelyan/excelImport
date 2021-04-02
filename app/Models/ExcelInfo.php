@@ -16,6 +16,7 @@ class ExcelInfo extends Model
      */
     protected $fillable = [
         'row_id',
+        'file_id',
         'name',
         'date',
     ];
@@ -24,7 +25,7 @@ class ExcelInfo extends Model
     * Get Allowed mime types
     *
     * @return Array
-    */ 
+    */
     public static function getAllowedMimeTypes(){
         return [
             'xlsx',

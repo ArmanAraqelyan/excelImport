@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Uploads;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -15,14 +16,17 @@ class FileUploaded
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $file_name;
+    public $file_id;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($uploded)
+    public function __construct(Uploads $uploded)
     {
         $this->file_name = $uploded->file_name;
+        $this->file_id   = $uploded->id;
     }
+
 }
